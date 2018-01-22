@@ -1,0 +1,6 @@
+ int main () {
+  int X = 10;
+  cout<<"HELLO THERE"<<;
+  int Y = 9;
+  int z = Y * 2;
+}

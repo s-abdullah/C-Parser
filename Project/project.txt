@@ -1,0 +1,72 @@
+switch(expression){
+    case constant-expression  :
+       statement(s);
+       break; //optional
+    case constant-expression  :
+       statement(s);
+       break; //optional
+  
+    // you can have any number of case statements.
+    default : //Optional
+       statement(s);
+}
+
+
+
+
+Example code:
+   char grade = 'D';
+
+   switch(grade)
+   {
+   case 'A' :
+      cout << "Excellent!" << endl; 
+      break;
+   case 'B' :
+   case 'C' :
+      cout << "Well done" << endl;
+      break;
+   case 'D' :
+      cout << "You passed" << endl;
+      break;
+   case 'F' :
+      cout << "Better try again" << endl;
+      break;
+   default :
+      cout << "Invalid grade" << endl;
+   }
+   cout << "Your grade is " << grade << endl;
+ 
+   return 0;
+}
+
+
+// variable declaration
+Declaration = type expression equal const_expression
+	type = char, int
+	expression = variable_name
+	equal = '='
+	const_exxpression = 'character', "String", number
+
+// Switch initiation
+Switch_stat = Switch l_brace const_expression r_brace l_curly body r_curly
+	Switch = SWITCH
+	l_brace = '('
+	r_brace = ')'
+	l_curly = '{'
+	r_curly = '}'
+	body =  CASE statements body
+
+// cases
+	CASE = 'case' const_expressions ':'
+	statements = general code, expression, functions cout etc.
+
+// terminals 
+
+assign = '='
+type = char, int
+const_expression = character, string, number
+brace and curlys
+colon = ':'
+case and switch	 
+	

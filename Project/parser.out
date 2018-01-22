@@ -1,0 +1,1065 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> INT MAIN L_BRACE R_BRACE L_CURLY R_CURLY
+Rule 2     program -> INT MAIN L_BRACE R_BRACE L_CURLY statements R_CURLY
+Rule 3     statements -> statement statements
+Rule 4     statements -> <empty>
+Rule 5     statement -> expression
+Rule 6     statement -> function
+Rule 7     statement -> modifier
+Rule 8     statement -> case_switch
+Rule 9     function -> COUT more SEMI
+Rule 10    more -> var
+Rule 11    more -> str
+Rule 12    more -> <empty>
+Rule 13    str -> OP STRING
+Rule 14    str -> OP STRING OP
+Rule 15    var -> OP NAME
+Rule 16    var -> OP NAME OP
+Rule 17    expression -> INT NAME ASSIGN NUMBER SEMI
+Rule 18    expression -> CHAR NAME ASSIGN CHARACTER SEMI
+Rule 19    expression -> INT NAME ASSIGN NAME SEMI
+Rule 20    expression -> CHAR NAME ASSIGN NAME SEMI
+Rule 21    expression -> INT NAME ASSIGN modifier
+Rule 22    modifier -> NAME ARITHEMATIC NAME SEMI
+Rule 23    modifier -> NAME ARITHEMATIC NUMBER SEMI
+Rule 24    case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY
+Rule 25    case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY
+Rule 26    case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY
+Rule 27    cases -> case cases
+Rule 28    cases -> <empty>
+Rule 29    case -> CASE NUMBER COLON statements
+Rule 30    case -> CASE CHARACTER COLON statements
+Rule 31    case -> CASE NUMBER COLON statements BREAK SEMI
+Rule 32    case -> CASE CHARACTER COLON statements BREAK SEMI
+Rule 33    case -> DEFAULT COLON statements
+Rule 34    case -> DEFAULT COLON statements BREAK SEMI
+
+Terminals, with rules where they appear
+
+ARITHEMATIC          : 22 23
+ASSIGN               : 17 18 19 20 21
+BREAK                : 31 32 34
+CASE                 : 29 30 31 32
+CHAR                 : 18 20
+CHARACTER            : 18 25 30 32
+COLON                : 29 30 31 32 33 34
+COUT                 : 9
+DEFAULT              : 33 34
+INT                  : 1 2 17 19 21
+L_BRACE              : 1 2 24 25 26
+L_CURLY              : 1 2 24 25 26
+MAIN                 : 1 2
+NAME                 : 15 16 17 18 19 19 20 20 21 22 22 23 24
+NUMBER               : 17 23 26 29 31
+OP                   : 13 14 14 15 16 16
+R_BRACE              : 1 2 24 25 26
+R_CURLY              : 1 2 24 25 26
+SEMI                 : 9 17 18 19 20 22 23 31 32 34
+STRING               : 13 14
+SWITCH               : 24 25 26
+error                : 
+
+Nonterminals, with rules where they appear
+
+case                 : 27
+case_switch          : 8
+cases                : 24 25 26 27
+expression           : 5
+function             : 6
+modifier             : 7 21
+more                 : 9
+program              : 0
+statement            : 3
+statements           : 2 3 29 30 31 32 33 34
+str                  : 11
+var                  : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . INT MAIN L_BRACE R_BRACE L_CURLY R_CURLY
+    (2) program -> . INT MAIN L_BRACE R_BRACE L_CURLY statements R_CURLY
+
+    INT             shift and go to state 1
+
+    program                        shift and go to state 2
+
+state 1
+
+    (1) program -> INT . MAIN L_BRACE R_BRACE L_CURLY R_CURLY
+    (2) program -> INT . MAIN L_BRACE R_BRACE L_CURLY statements R_CURLY
+
+    MAIN            shift and go to state 3
+
+
+state 2
+
+    (0) S' -> program .
+
+
+
+state 3
+
+    (1) program -> INT MAIN . L_BRACE R_BRACE L_CURLY R_CURLY
+    (2) program -> INT MAIN . L_BRACE R_BRACE L_CURLY statements R_CURLY
+
+    L_BRACE         shift and go to state 4
+
+
+state 4
+
+    (1) program -> INT MAIN L_BRACE . R_BRACE L_CURLY R_CURLY
+    (2) program -> INT MAIN L_BRACE . R_BRACE L_CURLY statements R_CURLY
+
+    R_BRACE         shift and go to state 5
+
+
+state 5
+
+    (1) program -> INT MAIN L_BRACE R_BRACE . L_CURLY R_CURLY
+    (2) program -> INT MAIN L_BRACE R_BRACE . L_CURLY statements R_CURLY
+
+    L_CURLY         shift and go to state 6
+
+
+state 6
+
+    (1) program -> INT MAIN L_BRACE R_BRACE L_CURLY . R_CURLY
+    (2) program -> INT MAIN L_BRACE R_BRACE L_CURLY . statements R_CURLY
+    (3) statements -> . statement statements
+    (4) statements -> .
+    (5) statement -> . expression
+    (6) statement -> . function
+    (7) statement -> . modifier
+    (8) statement -> . case_switch
+    (17) expression -> . INT NAME ASSIGN NUMBER SEMI
+    (18) expression -> . CHAR NAME ASSIGN CHARACTER SEMI
+    (19) expression -> . INT NAME ASSIGN NAME SEMI
+    (20) expression -> . CHAR NAME ASSIGN NAME SEMI
+    (21) expression -> . INT NAME ASSIGN modifier
+    (9) function -> . COUT more SEMI
+    (22) modifier -> . NAME ARITHEMATIC NAME SEMI
+    (23) modifier -> . NAME ARITHEMATIC NUMBER SEMI
+    (24) case_switch -> . SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY
+    (25) case_switch -> . SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY
+    (26) case_switch -> . SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY
+
+  ! shift/reduce conflict for R_CURLY resolved as shift
+    R_CURLY         shift and go to state 13
+    INT             shift and go to state 16
+    CHAR            shift and go to state 9
+    COUT            shift and go to state 8
+    NAME            shift and go to state 15
+    SWITCH          shift and go to state 11
+
+  ! R_CURLY         [ reduce using rule 4 (statements -> .) ]
+
+    function                       shift and go to state 14
+    statements                     shift and go to state 7
+    case_switch                    shift and go to state 10
+    statement                      shift and go to state 12
+    modifier                       shift and go to state 17
+    expression                     shift and go to state 18
+
+state 7
+
+    (2) program -> INT MAIN L_BRACE R_BRACE L_CURLY statements . R_CURLY
+
+    R_CURLY         shift and go to state 19
+
+
+state 8
+
+    (9) function -> COUT . more SEMI
+    (10) more -> . var
+    (11) more -> . str
+    (12) more -> .
+    (15) var -> . OP NAME
+    (16) var -> . OP NAME OP
+    (13) str -> . OP STRING
+    (14) str -> . OP STRING OP
+
+    SEMI            reduce using rule 12 (more -> .)
+    OP              shift and go to state 23
+
+    var                            shift and go to state 21
+    str                            shift and go to state 20
+    more                           shift and go to state 22
+
+state 9
+
+    (18) expression -> CHAR . NAME ASSIGN CHARACTER SEMI
+    (20) expression -> CHAR . NAME ASSIGN NAME SEMI
+
+    NAME            shift and go to state 24
+
+
+state 10
+
+    (8) statement -> case_switch .
+
+    INT             reduce using rule 8 (statement -> case_switch .)
+    CHAR            reduce using rule 8 (statement -> case_switch .)
+    COUT            reduce using rule 8 (statement -> case_switch .)
+    NAME            reduce using rule 8 (statement -> case_switch .)
+    SWITCH          reduce using rule 8 (statement -> case_switch .)
+    R_CURLY         reduce using rule 8 (statement -> case_switch .)
+    BREAK           reduce using rule 8 (statement -> case_switch .)
+    CASE            reduce using rule 8 (statement -> case_switch .)
+    DEFAULT         reduce using rule 8 (statement -> case_switch .)
+
+
+state 11
+
+    (24) case_switch -> SWITCH . L_BRACE NAME R_BRACE L_CURLY cases R_CURLY
+    (25) case_switch -> SWITCH . L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY
+    (26) case_switch -> SWITCH . L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY
+
+    L_BRACE         shift and go to state 25
+
+
+state 12
+
+    (3) statements -> statement . statements
+    (3) statements -> . statement statements
+    (4) statements -> .
+    (5) statement -> . expression
+    (6) statement -> . function
+    (7) statement -> . modifier
+    (8) statement -> . case_switch
+    (17) expression -> . INT NAME ASSIGN NUMBER SEMI
+    (18) expression -> . CHAR NAME ASSIGN CHARACTER SEMI
+    (19) expression -> . INT NAME ASSIGN NAME SEMI
+    (20) expression -> . CHAR NAME ASSIGN NAME SEMI
+    (21) expression -> . INT NAME ASSIGN modifier
+    (9) function -> . COUT more SEMI
+    (22) modifier -> . NAME ARITHEMATIC NAME SEMI
+    (23) modifier -> . NAME ARITHEMATIC NUMBER SEMI
+    (24) case_switch -> . SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY
+    (25) case_switch -> . SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY
+    (26) case_switch -> . SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY
+
+    R_CURLY         reduce using rule 4 (statements -> .)
+    BREAK           reduce using rule 4 (statements -> .)
+    CASE            reduce using rule 4 (statements -> .)
+    DEFAULT         reduce using rule 4 (statements -> .)
+    INT             shift and go to state 16
+    CHAR            shift and go to state 9
+    COUT            shift and go to state 8
+    NAME            shift and go to state 15
+    SWITCH          shift and go to state 11
+
+    function                       shift and go to state 14
+    statements                     shift and go to state 26
+    case_switch                    shift and go to state 10
+    statement                      shift and go to state 12
+    modifier                       shift and go to state 17
+    expression                     shift and go to state 18
+
+state 13
+
+    (1) program -> INT MAIN L_BRACE R_BRACE L_CURLY R_CURLY .
+
+    $end            reduce using rule 1 (program -> INT MAIN L_BRACE R_BRACE L_CURLY R_CURLY .)
+
+
+state 14
+
+    (6) statement -> function .
+
+    INT             reduce using rule 6 (statement -> function .)
+    CHAR            reduce using rule 6 (statement -> function .)
+    COUT            reduce using rule 6 (statement -> function .)
+    NAME            reduce using rule 6 (statement -> function .)
+    SWITCH          reduce using rule 6 (statement -> function .)
+    R_CURLY         reduce using rule 6 (statement -> function .)
+    BREAK           reduce using rule 6 (statement -> function .)
+    CASE            reduce using rule 6 (statement -> function .)
+    DEFAULT         reduce using rule 6 (statement -> function .)
+
+
+state 15
+
+    (22) modifier -> NAME . ARITHEMATIC NAME SEMI
+    (23) modifier -> NAME . ARITHEMATIC NUMBER SEMI
+
+    ARITHEMATIC     shift and go to state 27
+
+
+state 16
+
+    (17) expression -> INT . NAME ASSIGN NUMBER SEMI
+    (19) expression -> INT . NAME ASSIGN NAME SEMI
+    (21) expression -> INT . NAME ASSIGN modifier
+
+    NAME            shift and go to state 28
+
+
+state 17
+
+    (7) statement -> modifier .
+
+    INT             reduce using rule 7 (statement -> modifier .)
+    CHAR            reduce using rule 7 (statement -> modifier .)
+    COUT            reduce using rule 7 (statement -> modifier .)
+    NAME            reduce using rule 7 (statement -> modifier .)
+    SWITCH          reduce using rule 7 (statement -> modifier .)
+    R_CURLY         reduce using rule 7 (statement -> modifier .)
+    BREAK           reduce using rule 7 (statement -> modifier .)
+    CASE            reduce using rule 7 (statement -> modifier .)
+    DEFAULT         reduce using rule 7 (statement -> modifier .)
+
+
+state 18
+
+    (5) statement -> expression .
+
+    INT             reduce using rule 5 (statement -> expression .)
+    CHAR            reduce using rule 5 (statement -> expression .)
+    COUT            reduce using rule 5 (statement -> expression .)
+    NAME            reduce using rule 5 (statement -> expression .)
+    SWITCH          reduce using rule 5 (statement -> expression .)
+    R_CURLY         reduce using rule 5 (statement -> expression .)
+    BREAK           reduce using rule 5 (statement -> expression .)
+    CASE            reduce using rule 5 (statement -> expression .)
+    DEFAULT         reduce using rule 5 (statement -> expression .)
+
+
+state 19
+
+    (2) program -> INT MAIN L_BRACE R_BRACE L_CURLY statements R_CURLY .
+
+    $end            reduce using rule 2 (program -> INT MAIN L_BRACE R_BRACE L_CURLY statements R_CURLY .)
+
+
+state 20
+
+    (11) more -> str .
+
+    SEMI            reduce using rule 11 (more -> str .)
+
+
+state 21
+
+    (10) more -> var .
+
+    SEMI            reduce using rule 10 (more -> var .)
+
+
+state 22
+
+    (9) function -> COUT more . SEMI
+
+    SEMI            shift and go to state 29
+
+
+state 23
+
+    (15) var -> OP . NAME
+    (16) var -> OP . NAME OP
+    (13) str -> OP . STRING
+    (14) str -> OP . STRING OP
+
+    NAME            shift and go to state 31
+    STRING          shift and go to state 30
+
+
+state 24
+
+    (18) expression -> CHAR NAME . ASSIGN CHARACTER SEMI
+    (20) expression -> CHAR NAME . ASSIGN NAME SEMI
+
+    ASSIGN          shift and go to state 32
+
+
+state 25
+
+    (24) case_switch -> SWITCH L_BRACE . NAME R_BRACE L_CURLY cases R_CURLY
+    (25) case_switch -> SWITCH L_BRACE . CHARACTER R_BRACE L_CURLY cases R_CURLY
+    (26) case_switch -> SWITCH L_BRACE . NUMBER R_BRACE L_CURLY cases R_CURLY
+
+    NAME            shift and go to state 33
+    CHARACTER       shift and go to state 34
+    NUMBER          shift and go to state 35
+
+
+state 26
+
+    (3) statements -> statement statements .
+
+    BREAK           reduce using rule 3 (statements -> statement statements .)
+    CASE            reduce using rule 3 (statements -> statement statements .)
+    DEFAULT         reduce using rule 3 (statements -> statement statements .)
+    R_CURLY         reduce using rule 3 (statements -> statement statements .)
+
+
+state 27
+
+    (22) modifier -> NAME ARITHEMATIC . NAME SEMI
+    (23) modifier -> NAME ARITHEMATIC . NUMBER SEMI
+
+    NAME            shift and go to state 36
+    NUMBER          shift and go to state 37
+
+
+state 28
+
+    (17) expression -> INT NAME . ASSIGN NUMBER SEMI
+    (19) expression -> INT NAME . ASSIGN NAME SEMI
+    (21) expression -> INT NAME . ASSIGN modifier
+
+    ASSIGN          shift and go to state 38
+
+
+state 29
+
+    (9) function -> COUT more SEMI .
+
+    INT             reduce using rule 9 (function -> COUT more SEMI .)
+    CHAR            reduce using rule 9 (function -> COUT more SEMI .)
+    COUT            reduce using rule 9 (function -> COUT more SEMI .)
+    NAME            reduce using rule 9 (function -> COUT more SEMI .)
+    SWITCH          reduce using rule 9 (function -> COUT more SEMI .)
+    BREAK           reduce using rule 9 (function -> COUT more SEMI .)
+    CASE            reduce using rule 9 (function -> COUT more SEMI .)
+    DEFAULT         reduce using rule 9 (function -> COUT more SEMI .)
+    R_CURLY         reduce using rule 9 (function -> COUT more SEMI .)
+
+
+state 30
+
+    (13) str -> OP STRING .
+    (14) str -> OP STRING . OP
+
+    SEMI            reduce using rule 13 (str -> OP STRING .)
+    OP              shift and go to state 39
+
+
+state 31
+
+    (15) var -> OP NAME .
+    (16) var -> OP NAME . OP
+
+    SEMI            reduce using rule 15 (var -> OP NAME .)
+    OP              shift and go to state 40
+
+
+state 32
+
+    (18) expression -> CHAR NAME ASSIGN . CHARACTER SEMI
+    (20) expression -> CHAR NAME ASSIGN . NAME SEMI
+
+    CHARACTER       shift and go to state 41
+    NAME            shift and go to state 42
+
+
+state 33
+
+    (24) case_switch -> SWITCH L_BRACE NAME . R_BRACE L_CURLY cases R_CURLY
+
+    R_BRACE         shift and go to state 43
+
+
+state 34
+
+    (25) case_switch -> SWITCH L_BRACE CHARACTER . R_BRACE L_CURLY cases R_CURLY
+
+    R_BRACE         shift and go to state 44
+
+
+state 35
+
+    (26) case_switch -> SWITCH L_BRACE NUMBER . R_BRACE L_CURLY cases R_CURLY
+
+    R_BRACE         shift and go to state 45
+
+
+state 36
+
+    (22) modifier -> NAME ARITHEMATIC NAME . SEMI
+
+    SEMI            shift and go to state 46
+
+
+state 37
+
+    (23) modifier -> NAME ARITHEMATIC NUMBER . SEMI
+
+    SEMI            shift and go to state 47
+
+
+state 38
+
+    (17) expression -> INT NAME ASSIGN . NUMBER SEMI
+    (19) expression -> INT NAME ASSIGN . NAME SEMI
+    (21) expression -> INT NAME ASSIGN . modifier
+    (22) modifier -> . NAME ARITHEMATIC NAME SEMI
+    (23) modifier -> . NAME ARITHEMATIC NUMBER SEMI
+
+    NUMBER          shift and go to state 49
+    NAME            shift and go to state 48
+
+    modifier                       shift and go to state 50
+
+state 39
+
+    (14) str -> OP STRING OP .
+
+    SEMI            reduce using rule 14 (str -> OP STRING OP .)
+
+
+state 40
+
+    (16) var -> OP NAME OP .
+
+    SEMI            reduce using rule 16 (var -> OP NAME OP .)
+
+
+state 41
+
+    (18) expression -> CHAR NAME ASSIGN CHARACTER . SEMI
+
+    SEMI            shift and go to state 51
+
+
+state 42
+
+    (20) expression -> CHAR NAME ASSIGN NAME . SEMI
+
+    SEMI            shift and go to state 52
+
+
+state 43
+
+    (24) case_switch -> SWITCH L_BRACE NAME R_BRACE . L_CURLY cases R_CURLY
+
+    L_CURLY         shift and go to state 53
+
+
+state 44
+
+    (25) case_switch -> SWITCH L_BRACE CHARACTER R_BRACE . L_CURLY cases R_CURLY
+
+    L_CURLY         shift and go to state 54
+
+
+state 45
+
+    (26) case_switch -> SWITCH L_BRACE NUMBER R_BRACE . L_CURLY cases R_CURLY
+
+    L_CURLY         shift and go to state 55
+
+
+state 46
+
+    (22) modifier -> NAME ARITHEMATIC NAME SEMI .
+
+    INT             reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    CHAR            reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    COUT            reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    NAME            reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    SWITCH          reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    R_CURLY         reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    BREAK           reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    CASE            reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+    DEFAULT         reduce using rule 22 (modifier -> NAME ARITHEMATIC NAME SEMI .)
+
+
+state 47
+
+    (23) modifier -> NAME ARITHEMATIC NUMBER SEMI .
+
+    INT             reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    CHAR            reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    COUT            reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    NAME            reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    SWITCH          reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    R_CURLY         reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    BREAK           reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    CASE            reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+    DEFAULT         reduce using rule 23 (modifier -> NAME ARITHEMATIC NUMBER SEMI .)
+
+
+state 48
+
+    (19) expression -> INT NAME ASSIGN NAME . SEMI
+    (22) modifier -> NAME . ARITHEMATIC NAME SEMI
+    (23) modifier -> NAME . ARITHEMATIC NUMBER SEMI
+
+    SEMI            shift and go to state 56
+    ARITHEMATIC     shift and go to state 27
+
+
+state 49
+
+    (17) expression -> INT NAME ASSIGN NUMBER . SEMI
+
+    SEMI            shift and go to state 57
+
+
+state 50
+
+    (21) expression -> INT NAME ASSIGN modifier .
+
+    INT             reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    CHAR            reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    COUT            reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    NAME            reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    SWITCH          reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    BREAK           reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    CASE            reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    DEFAULT         reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+    R_CURLY         reduce using rule 21 (expression -> INT NAME ASSIGN modifier .)
+
+
+state 51
+
+    (18) expression -> CHAR NAME ASSIGN CHARACTER SEMI .
+
+    INT             reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    CHAR            reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    COUT            reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    NAME            reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    SWITCH          reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    BREAK           reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    CASE            reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    DEFAULT         reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+    R_CURLY         reduce using rule 18 (expression -> CHAR NAME ASSIGN CHARACTER SEMI .)
+
+
+state 52
+
+    (20) expression -> CHAR NAME ASSIGN NAME SEMI .
+
+    INT             reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    CHAR            reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    COUT            reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    NAME            reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    SWITCH          reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    BREAK           reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    CASE            reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    DEFAULT         reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+    R_CURLY         reduce using rule 20 (expression -> CHAR NAME ASSIGN NAME SEMI .)
+
+
+state 53
+
+    (24) case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY . cases R_CURLY
+    (27) cases -> . case cases
+    (28) cases -> .
+    (29) case -> . CASE NUMBER COLON statements
+    (30) case -> . CASE CHARACTER COLON statements
+    (31) case -> . CASE NUMBER COLON statements BREAK SEMI
+    (32) case -> . CASE CHARACTER COLON statements BREAK SEMI
+    (33) case -> . DEFAULT COLON statements
+    (34) case -> . DEFAULT COLON statements BREAK SEMI
+
+    R_CURLY         reduce using rule 28 (cases -> .)
+    CASE            shift and go to state 59
+    DEFAULT         shift and go to state 60
+
+    case                           shift and go to state 58
+    cases                          shift and go to state 61
+
+state 54
+
+    (25) case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY . cases R_CURLY
+    (27) cases -> . case cases
+    (28) cases -> .
+    (29) case -> . CASE NUMBER COLON statements
+    (30) case -> . CASE CHARACTER COLON statements
+    (31) case -> . CASE NUMBER COLON statements BREAK SEMI
+    (32) case -> . CASE CHARACTER COLON statements BREAK SEMI
+    (33) case -> . DEFAULT COLON statements
+    (34) case -> . DEFAULT COLON statements BREAK SEMI
+
+    R_CURLY         reduce using rule 28 (cases -> .)
+    CASE            shift and go to state 59
+    DEFAULT         shift and go to state 60
+
+    case                           shift and go to state 58
+    cases                          shift and go to state 62
+
+state 55
+
+    (26) case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY . cases R_CURLY
+    (27) cases -> . case cases
+    (28) cases -> .
+    (29) case -> . CASE NUMBER COLON statements
+    (30) case -> . CASE CHARACTER COLON statements
+    (31) case -> . CASE NUMBER COLON statements BREAK SEMI
+    (32) case -> . CASE CHARACTER COLON statements BREAK SEMI
+    (33) case -> . DEFAULT COLON statements
+    (34) case -> . DEFAULT COLON statements BREAK SEMI
+
+    R_CURLY         reduce using rule 28 (cases -> .)
+    CASE            shift and go to state 59
+    DEFAULT         shift and go to state 60
+
+    case                           shift and go to state 58
+    cases                          shift and go to state 63
+
+state 56
+
+    (19) expression -> INT NAME ASSIGN NAME SEMI .
+
+    INT             reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    CHAR            reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    COUT            reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    NAME            reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    SWITCH          reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    BREAK           reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    CASE            reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    DEFAULT         reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+    R_CURLY         reduce using rule 19 (expression -> INT NAME ASSIGN NAME SEMI .)
+
+
+state 57
+
+    (17) expression -> INT NAME ASSIGN NUMBER SEMI .
+
+    INT             reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    CHAR            reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    COUT            reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    NAME            reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    SWITCH          reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    BREAK           reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    CASE            reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    DEFAULT         reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+    R_CURLY         reduce using rule 17 (expression -> INT NAME ASSIGN NUMBER SEMI .)
+
+
+state 58
+
+    (27) cases -> case . cases
+    (27) cases -> . case cases
+    (28) cases -> .
+    (29) case -> . CASE NUMBER COLON statements
+    (30) case -> . CASE CHARACTER COLON statements
+    (31) case -> . CASE NUMBER COLON statements BREAK SEMI
+    (32) case -> . CASE CHARACTER COLON statements BREAK SEMI
+    (33) case -> . DEFAULT COLON statements
+    (34) case -> . DEFAULT COLON statements BREAK SEMI
+
+    R_CURLY         reduce using rule 28 (cases -> .)
+    CASE            shift and go to state 59
+    DEFAULT         shift and go to state 60
+
+    case                           shift and go to state 58
+    cases                          shift and go to state 64
+
+state 59
+
+    (29) case -> CASE . NUMBER COLON statements
+    (30) case -> CASE . CHARACTER COLON statements
+    (31) case -> CASE . NUMBER COLON statements BREAK SEMI
+    (32) case -> CASE . CHARACTER COLON statements BREAK SEMI
+
+    NUMBER          shift and go to state 66
+    CHARACTER       shift and go to state 65
+
+
+state 60
+
+    (33) case -> DEFAULT . COLON statements
+    (34) case -> DEFAULT . COLON statements BREAK SEMI
+
+    COLON           shift and go to state 67
+
+
+state 61
+
+    (24) case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases . R_CURLY
+
+    R_CURLY         shift and go to state 68
+
+
+state 62
+
+    (25) case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases . R_CURLY
+
+    R_CURLY         shift and go to state 69
+
+
+state 63
+
+    (26) case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases . R_CURLY
+
+    R_CURLY         shift and go to state 70
+
+
+state 64
+
+    (27) cases -> case cases .
+
+    R_CURLY         reduce using rule 27 (cases -> case cases .)
+
+
+state 65
+
+    (30) case -> CASE CHARACTER . COLON statements
+    (32) case -> CASE CHARACTER . COLON statements BREAK SEMI
+
+    COLON           shift and go to state 71
+
+
+state 66
+
+    (29) case -> CASE NUMBER . COLON statements
+    (31) case -> CASE NUMBER . COLON statements BREAK SEMI
+
+    COLON           shift and go to state 72
+
+
+state 67
+
+    (33) case -> DEFAULT COLON . statements
+    (34) case -> DEFAULT COLON . statements BREAK SEMI
+    (3) statements -> . statement statements
+    (4) statements -> .
+    (5) statement -> . expression
+    (6) statement -> . function
+    (7) statement -> . modifier
+    (8) statement -> . case_switch
+    (17) expression -> . INT NAME ASSIGN NUMBER SEMI
+    (18) expression -> . CHAR NAME ASSIGN CHARACTER SEMI
+    (19) expression -> . INT NAME ASSIGN NAME SEMI
+    (20) expression -> . CHAR NAME ASSIGN NAME SEMI
+    (21) expression -> . INT NAME ASSIGN modifier
+    (9) function -> . COUT more SEMI
+    (22) modifier -> . NAME ARITHEMATIC NAME SEMI
+    (23) modifier -> . NAME ARITHEMATIC NUMBER SEMI
+    (24) case_switch -> . SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY
+    (25) case_switch -> . SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY
+    (26) case_switch -> . SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY
+
+    BREAK           reduce using rule 4 (statements -> .)
+    CASE            reduce using rule 4 (statements -> .)
+    DEFAULT         reduce using rule 4 (statements -> .)
+    R_CURLY         reduce using rule 4 (statements -> .)
+    INT             shift and go to state 16
+    CHAR            shift and go to state 9
+    COUT            shift and go to state 8
+    NAME            shift and go to state 15
+    SWITCH          shift and go to state 11
+
+    function                       shift and go to state 14
+    statements                     shift and go to state 73
+    case_switch                    shift and go to state 10
+    statement                      shift and go to state 12
+    modifier                       shift and go to state 17
+    expression                     shift and go to state 18
+
+state 68
+
+    (24) case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .
+
+    INT             reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    CHAR            reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    COUT            reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    NAME            reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    SWITCH          reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    BREAK           reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    CASE            reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    DEFAULT         reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+    R_CURLY         reduce using rule 24 (case_switch -> SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY .)
+
+
+state 69
+
+    (25) case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .
+
+    INT             reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    CHAR            reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    COUT            reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    NAME            reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    SWITCH          reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    BREAK           reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    CASE            reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    DEFAULT         reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+    R_CURLY         reduce using rule 25 (case_switch -> SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY .)
+
+
+state 70
+
+    (26) case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .
+
+    INT             reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    CHAR            reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    COUT            reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    NAME            reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    SWITCH          reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    BREAK           reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    CASE            reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    DEFAULT         reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+    R_CURLY         reduce using rule 26 (case_switch -> SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY .)
+
+
+state 71
+
+    (30) case -> CASE CHARACTER COLON . statements
+    (32) case -> CASE CHARACTER COLON . statements BREAK SEMI
+    (3) statements -> . statement statements
+    (4) statements -> .
+    (5) statement -> . expression
+    (6) statement -> . function
+    (7) statement -> . modifier
+    (8) statement -> . case_switch
+    (17) expression -> . INT NAME ASSIGN NUMBER SEMI
+    (18) expression -> . CHAR NAME ASSIGN CHARACTER SEMI
+    (19) expression -> . INT NAME ASSIGN NAME SEMI
+    (20) expression -> . CHAR NAME ASSIGN NAME SEMI
+    (21) expression -> . INT NAME ASSIGN modifier
+    (9) function -> . COUT more SEMI
+    (22) modifier -> . NAME ARITHEMATIC NAME SEMI
+    (23) modifier -> . NAME ARITHEMATIC NUMBER SEMI
+    (24) case_switch -> . SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY
+    (25) case_switch -> . SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY
+    (26) case_switch -> . SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY
+
+    BREAK           reduce using rule 4 (statements -> .)
+    CASE            reduce using rule 4 (statements -> .)
+    DEFAULT         reduce using rule 4 (statements -> .)
+    R_CURLY         reduce using rule 4 (statements -> .)
+    INT             shift and go to state 16
+    CHAR            shift and go to state 9
+    COUT            shift and go to state 8
+    NAME            shift and go to state 15
+    SWITCH          shift and go to state 11
+
+    function                       shift and go to state 14
+    statements                     shift and go to state 74
+    case_switch                    shift and go to state 10
+    statement                      shift and go to state 12
+    modifier                       shift and go to state 17
+    expression                     shift and go to state 18
+
+state 72
+
+    (29) case -> CASE NUMBER COLON . statements
+    (31) case -> CASE NUMBER COLON . statements BREAK SEMI
+    (3) statements -> . statement statements
+    (4) statements -> .
+    (5) statement -> . expression
+    (6) statement -> . function
+    (7) statement -> . modifier
+    (8) statement -> . case_switch
+    (17) expression -> . INT NAME ASSIGN NUMBER SEMI
+    (18) expression -> . CHAR NAME ASSIGN CHARACTER SEMI
+    (19) expression -> . INT NAME ASSIGN NAME SEMI
+    (20) expression -> . CHAR NAME ASSIGN NAME SEMI
+    (21) expression -> . INT NAME ASSIGN modifier
+    (9) function -> . COUT more SEMI
+    (22) modifier -> . NAME ARITHEMATIC NAME SEMI
+    (23) modifier -> . NAME ARITHEMATIC NUMBER SEMI
+    (24) case_switch -> . SWITCH L_BRACE NAME R_BRACE L_CURLY cases R_CURLY
+    (25) case_switch -> . SWITCH L_BRACE CHARACTER R_BRACE L_CURLY cases R_CURLY
+    (26) case_switch -> . SWITCH L_BRACE NUMBER R_BRACE L_CURLY cases R_CURLY
+
+    BREAK           reduce using rule 4 (statements -> .)
+    CASE            reduce using rule 4 (statements -> .)
+    DEFAULT         reduce using rule 4 (statements -> .)
+    R_CURLY         reduce using rule 4 (statements -> .)
+    INT             shift and go to state 16
+    CHAR            shift and go to state 9
+    COUT            shift and go to state 8
+    NAME            shift and go to state 15
+    SWITCH          shift and go to state 11
+
+    function                       shift and go to state 14
+    statements                     shift and go to state 75
+    case_switch                    shift and go to state 10
+    statement                      shift and go to state 12
+    modifier                       shift and go to state 17
+    expression                     shift and go to state 18
+
+state 73
+
+    (33) case -> DEFAULT COLON statements .
+    (34) case -> DEFAULT COLON statements . BREAK SEMI
+
+    CASE            reduce using rule 33 (case -> DEFAULT COLON statements .)
+    DEFAULT         reduce using rule 33 (case -> DEFAULT COLON statements .)
+    R_CURLY         reduce using rule 33 (case -> DEFAULT COLON statements .)
+    BREAK           shift and go to state 76
+
+
+state 74
+
+    (30) case -> CASE CHARACTER COLON statements .
+    (32) case -> CASE CHARACTER COLON statements . BREAK SEMI
+
+    CASE            reduce using rule 30 (case -> CASE CHARACTER COLON statements .)
+    DEFAULT         reduce using rule 30 (case -> CASE CHARACTER COLON statements .)
+    R_CURLY         reduce using rule 30 (case -> CASE CHARACTER COLON statements .)
+    BREAK           shift and go to state 77
+
+
+state 75
+
+    (29) case -> CASE NUMBER COLON statements .
+    (31) case -> CASE NUMBER COLON statements . BREAK SEMI
+
+    CASE            reduce using rule 29 (case -> CASE NUMBER COLON statements .)
+    DEFAULT         reduce using rule 29 (case -> CASE NUMBER COLON statements .)
+    R_CURLY         reduce using rule 29 (case -> CASE NUMBER COLON statements .)
+    BREAK           shift and go to state 78
+
+
+state 76
+
+    (34) case -> DEFAULT COLON statements BREAK . SEMI
+
+    SEMI            shift and go to state 79
+
+
+state 77
+
+    (32) case -> CASE CHARACTER COLON statements BREAK . SEMI
+
+    SEMI            shift and go to state 80
+
+
+state 78
+
+    (31) case -> CASE NUMBER COLON statements BREAK . SEMI
+
+    SEMI            shift and go to state 81
+
+
+state 79
+
+    (34) case -> DEFAULT COLON statements BREAK SEMI .
+
+    CASE            reduce using rule 34 (case -> DEFAULT COLON statements BREAK SEMI .)
+    DEFAULT         reduce using rule 34 (case -> DEFAULT COLON statements BREAK SEMI .)
+    R_CURLY         reduce using rule 34 (case -> DEFAULT COLON statements BREAK SEMI .)
+
+
+state 80
+
+    (32) case -> CASE CHARACTER COLON statements BREAK SEMI .
+
+    CASE            reduce using rule 32 (case -> CASE CHARACTER COLON statements BREAK SEMI .)
+    DEFAULT         reduce using rule 32 (case -> CASE CHARACTER COLON statements BREAK SEMI .)
+    R_CURLY         reduce using rule 32 (case -> CASE CHARACTER COLON statements BREAK SEMI .)
+
+
+state 81
+
+    (31) case -> CASE NUMBER COLON statements BREAK SEMI .
+
+    CASE            reduce using rule 31 (case -> CASE NUMBER COLON statements BREAK SEMI .)
+    DEFAULT         reduce using rule 31 (case -> CASE NUMBER COLON statements BREAK SEMI .)
+    R_CURLY         reduce using rule 31 (case -> CASE NUMBER COLON statements BREAK SEMI .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for R_CURLY in state 6 resolved as shift
