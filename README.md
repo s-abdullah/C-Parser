@@ -1,6 +1,6 @@
 # c++ Parser
 The focus of this project is to lexically analyze the Case-Switch syntax of C++:
-
+```
 switch(expression){
     case constant-expression  :
        statement(s);
@@ -13,11 +13,12 @@ switch(expression){
     default : //Optional
        statement(s);
 }
-
+```
 
 
 
 Example code:
+```
    char grade = 'D';
 
    switch(grade)
@@ -42,7 +43,9 @@ Example code:
  
    return 0;
 }
-
+```
 Output:
+```
 You passed
 Your grade is D
+```
